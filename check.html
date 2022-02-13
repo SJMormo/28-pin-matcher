@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="increment-btn">3</button>
+    <span>
+        <h1>One</h1>
+    </span>
+    <span>Two</span>
+
+    <h1>Event Bubble</h1>
+    <section id="all-container">
+        <h2 id="title">list</h2>
+        <ul id="list-container">
+            <li>lorem1</li>
+            <li id="second-item">lorem2</li>
+            <li>lorem3</li>
+            <li>lorem4</li>
+        </ul>
+    </section>
+
+    <script>
+        document.getElementById('second-item').addEventListener('click', function () {
+            console.log("second item clicked");
+        })
+
+        document.getElementById('list-container').addEventListener('click', function () {
+            console.log("list-container clicked");
+        })
+
+        document.getElementById('list-container').addEventListener('click', function () {
+            console.log("all-container clicked");
+        })
+
+        document.getElementById('title').addEventListener('click', function () {
+            console.log("title clicked");
+        })
+
+
+        const product = 5;
+        const price = "7";
+        const subTotal = product * price;
+        console.log(subTotal);
+        const tax = subTotal / 10;
+        const total = subTotal + tax;
+        console.log(total);
+
+
+
+        const incrementButton = document.getElementById("increment-btn")
+        incrementButton.addEventListener("click", function () {
+            incrementButton.innerText = parseInt(incrementButton.innerText) + 3;
+        })
+
+        console.log(Math.random());
+
+    </script>
+</body>
+
+</html>
