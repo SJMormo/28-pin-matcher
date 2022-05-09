@@ -24,19 +24,43 @@ document.getElementById('input-number').addEventListener('click', function (even
     }
 });
 
+let count = 3;
+
+function init() {
+    const text = count + " try left";
+    document.getElementById('chances-left').value = text;
+    document.getElementById('pin-display').value = '';
+}
+init();
+
 document.getElementById('submit-btn').addEventListener('click', function () {
     const genValue = document.getElementById('pin-display').value;
     const inputValue = document.getElementById('display-input').value;
+    const leftChances = document.getElementById('chances-left').value;
+    console.log(leftChances);
 
     const notifyCross = document.getElementById('notify-cross');
     const notifyRight = document.getElementById('notify-right');
+    const notifyLimit = document.getElementById('notify-limit');
 
     if (genValue == inputValue) {
         notifyCross.style.display = 'none';
+        notifyLimit.style.display = 'none';
         notifyRight.style.display = 'block';
     }
     else {
+        count--;
+        const text = count + " try left";
+        document.getElementById('chances-left').value = text;
         notifyCross.style.display = 'block';
         notifyRight.style.display = 'none';
+        document.getElementById('display-input').value = '';
+
+        if (count === 0) {
+            document.getElementById('submit-btn').setAttribute('disabled', 'true');
+            document.getElementById('pin-display').value = '';
+            notifyCross.style.display = 'none';
+            notifyLimit.style.display = 'block';
+        }
     }
-})
+});
